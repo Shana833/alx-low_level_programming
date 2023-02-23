@@ -15,8 +15,7 @@ void times_table(void)
 			op = a * b;
 			_putchar('-');
 			_putchar(' ');
-		
-			if(op <= 9)
+			if (op <= 9)
 			{
 				_putchar(' ');
 			}
