@@ -1,12 +1,12 @@
 #include <stdio.h>
-/*
- * main - print lower case and upper
+/**
+ * main - prints lowercase and uppercase
  * Return: Always 0 (success)
  */
 int main(void)
-
 {
 	char c;
+
 	char d;
 
 	c = 'a';
