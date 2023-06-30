@@ -12,7 +12,7 @@
 int main(int argc, char *argv[])
 {
 	int i, j;
-	int (*op)(int, int);
+	char *op;
 
 	if (argc != 4)
 	{
@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	i = atoi(argv[1]);
-	op = get_op_func(argv[2]);
+	op = argv[2];
 	j = atoi(argv[3]);
 
 	if (argv[2][1])
@@ -35,6 +35,13 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	printf("%d\n", op(i, j));
+	if ((*op == '/' && j == 0) ||
+	    (*op == '%' && j == 0))
+	{
+		printf("Error\n");
+		exit(100);
+	}
+
+	printf("%d\n", get_op_func(op)(i, j));
 	return (0);
 }
