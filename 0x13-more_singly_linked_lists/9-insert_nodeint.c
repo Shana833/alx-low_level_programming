@@ -28,18 +28,19 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	}
 
 	curr = *head;
-	for (i = 0; curr && i < idx - 1; i++)
+	for (i = 0; curr && i < idx; i++)
 	{
-		if (curr == NULL)
-			free(new);
-		else
+		if (i == idx - 1)
 		{
-		return (NULL);
+			new->next = curr->next;
+			curr->next = new;
+			free(new);
+			return (new);
 		}
-	}
-	curr = curr->next;
-	new->next = curr->next;
-	curr->next = new;
+		else
+			curr = curr->next;
+		return (NULL);
 
+	}
 	return (new);
 }
