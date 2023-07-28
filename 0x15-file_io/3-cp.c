@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 	}
 
 	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0644);
 	print_error(file_from, file_to, argv);
 
 	char_read = 1024;
@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
 		written = write(file_to, buffer, char_read);
 		if (written == -1)
 			print_error(0, -1, argv);
-		file_to = open(argv[2], O_WRONLY | O_APPEND);
 	}
 
 	if (close(file_from) == -1 || close(file_to) == -1)
