@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
+/**
  * print_error - prints error message if errors occur while opening file
- * @file_from - file from
- * @file_to - file to
- * @argv - array of command arguments
+ * @file_from: file from
+ * @file_to: file to
+ * @argv: array of command arguments
  */
 void print_error(int file_from, int file_to, char *argv[])
 {
@@ -23,8 +23,11 @@ void print_error(int file_from, int file_to, char *argv[])
 	}
 }
 
-/*
- * cbuff - creates buffer (allocates memmory of 1024)
+/**
+ * cbuff - creates buffer allocates memmory of 1024
+ * @files: name of the file to store chars
+ *
+ * Return: new buffer allocation
  */
 char *cbuff(char *files)
 {
@@ -38,10 +41,12 @@ char *cbuff(char *files)
 	return (buffer);
 }
 
-/*
+/**
  * main - program entry point, checks files and copies content
- * @argc - number of command arguments
- * @argv - array of command arguments
+ * @argc: number of command arguments
+ * @argv: array of command arguments
+ *
+ * Return: 0 if successful
  */
 int main(int argc, char *argv[])
 {
@@ -55,29 +60,21 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	buffer = cbuff(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, O_APPEND, 0644);
 	print_error(file_from, file_to, argv);
-	
+
+	char_read = 1024;
 	while (char_read == 1024)
 	{
 		char_read = read(file_from, buffer, 1024);
 		if (char_read == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
-			exit(98);
-		}
+			print_error(-1, 0, argv);
 
 		written = write(file_to, buffer, char_read);
 		if (written == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			free(buffer);
-			exit(99);
-		}
-	}while (char_read > 0);
+			print_error(0, -1, argv);
+	}
 
 	if (close(file_from) == -1 || close(file_to) == -1)
 	{
