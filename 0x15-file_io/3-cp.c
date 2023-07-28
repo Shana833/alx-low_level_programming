@@ -24,24 +24,6 @@ void print_error(int file_from, int file_to, char *argv[])
 }
 
 /**
- * cbuff - creates buffer allocates memmory of 1024
- * @files: name of the file to store chars
- *
- * Return: new buffer allocation
- */
-char *cbuff(char *files)
-{
-	char *buffer = malloc(sizeof(char) * 1024);
-
-	if (buffer == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", files);
-		exit(99);
-	}
-	return (buffer);
-}
-
-/**
  * main - program entry point, checks files and copies content
  * @argc: number of command arguments
  * @argv: array of command arguments
@@ -52,7 +34,7 @@ int main(int argc, char *argv[])
 {
 	int file_from, file_to;
 	ssize_t char_read, written;
-	char *buffer;
+	char buffer[1024];
 
 	if (argc != 3)
 	{
