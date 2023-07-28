@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
 	buffer = cbuff(argv[2]);
 	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, O_APPEND, 0644);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, O_APPEND, 0644);
 	print_error(file_from, file_to, argv);
 	
 	while (char_read == 1024)
