@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include "lists.h"
 /**
- * sum_dlistint -  returns the sum of all the data (n) of a dlistint_t linked list
+ * sum_dlistint - sum of all the data (n) of a linked list
  * @head: head of the list
+ * 
+ * Return: nothing
  */
 int sum_dlistint(dlistint_t *head)
 {
