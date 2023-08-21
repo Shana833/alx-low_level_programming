@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include "lists.h"
 /**
- * add_dnodeint_end - 
- * @head: 
- * @n: 
+ * add_dnodeint_end -  adds a new node at the end of a dlistint_t list
+ * @head: head
+ * @n: value of element
  *
  * Return: address of the new element, NULL if failed
  */
