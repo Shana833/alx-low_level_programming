@@ -3,10 +3,12 @@
 #include "lists.h"
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
+	dlistint_t *new;
+
 	if (h == NULL)
 		return (NULL);
 
-	dlistint_t *new = malloc(sizeof(dlistint_t));
+	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
 
@@ -23,8 +25,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	}
 	else
 	{
-		dlistint_t *current = *h;
-		for (unsigned int i = 0; i < idx - 1 && current != NULL; i++)
+		dlistint_t *current;
+		unsigned int i;
+		current = *h;
+		for (i = 0; i < idx - 1 && current != NULL; i++)
 		{
 			current = current->next;
 		}
@@ -35,12 +39,12 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 			return (NULL);
 		}
 		
-		new_node->prev = current;
-		new_node->next = current->next;
+		new->prev = current;
+		new->next = current->next;
 		
 		if (current->next != NULL)
-			current->next->prev = new_node;
-		current->next = new_node;
+			current->next->prev = new;
+		current->next = new;
 	}
 
 	return (new);
