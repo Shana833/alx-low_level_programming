@@ -4,7 +4,7 @@
 /**
  * sum_dlistint - sum of all the data (n) of a linked list
  * @head: head of the list
- * 
+ *
  * Return: nothing
  */
 int sum_dlistint(dlistint_t *head)
